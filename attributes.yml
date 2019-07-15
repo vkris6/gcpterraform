@@ -1,5 +1,6 @@
 project_name: newdemo-246311
 cluster_name: my-cluster
 cluster_zone: europe-west1-b
-node_pool_name: default-pool
+node_pool_name_standard: standard-pool
+node_pool_name_highmem: highmem-pool
 network_name: vpc-subnetwork
