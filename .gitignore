@@ -1,2 +1,3 @@
 .terraform
 key.json
+gkecheck/vendor/
