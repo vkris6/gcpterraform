@@ -26,8 +26,15 @@ control 'gcp-1' do
 end
 
 
-google_container_node_pools(project: PROJECT_NAME, zone: CLUSTER_ZONE, cluster_name: CLUSTER_NAME).node_pool_names.each do |node_pool_name|
-  describe google_container_node_pool(project: PROJECT_NAME, zone: CLUSTER_ZONE, cluster_name: CLUSTER_NAME, nodepool_name: node_pool_name) do
+google_container_node_pools(project: PROJECT_NAME, zone: CLUSTER_ZONE, cluster_name: CLUSTER_NAME).node_pool_names.each do |node_pool_name_standard|
+  describe google_container_node_pool(project: PROJECT_NAME, zone: CLUSTER_ZONE, cluster_name: CLUSTER_NAME, nodepool_name: node_pool_name_standard) do
+    it { should exist }
+    its('status') { should eq 'RUNNING' }
+  end
+end
+
+google_container_node_pools(project: PROJECT_NAME, zone: CLUSTER_ZONE, cluster_name: CLUSTER_NAME).node_pool_names.each do |node_pool_name_highmem|
+  describe google_container_node_pool(project: PROJECT_NAME, zone: CLUSTER_ZONE, cluster_name: CLUSTER_NAME, nodepool_name: node_pool_name_highmem) do
     it { should exist }
     its('status') { should eq 'RUNNING' }
   end
