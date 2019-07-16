@@ -1,0 +1,3 @@
+module "teraform-cluster" {
+  source = "../../.."  
+}

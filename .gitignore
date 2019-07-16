@@ -1,3 +1,7 @@
 .terraform
 key.json
 gkecheck/vendor/
+vendor/
+.bundle/
+.kitchen/
+Gemfile.lock

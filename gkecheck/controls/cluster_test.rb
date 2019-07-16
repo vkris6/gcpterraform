@@ -20,7 +20,7 @@ control 'gcp-1' do
     its('node_config.image_type'){should eq "COS"}
     its('node_pools.count'){should eq 2}
     its('private_cluster_config.enable_private_nodes'){should eq true}
-    # its('master_authorized_networks_config.cidr_blocks'){should eq '@item={:cidr_block=>"90.221.77.132/32", :display_name=>"default"}'}
+    # its('master_authorized_networks_config.cidr_blocks'){should include '"cidrBlock":"90.221.77.132/32"'}
  
   end
 end
@@ -44,6 +44,5 @@ google_compute_networks(project: PROJECT_NAME).network_names.each do |network_na
     its ('subnetworks.count') { should be < 30 }
     its ('creation_timestamp_date') { should be > Time.now - 365*60*60*24*10 }
     its ('routing_config.routing_mode') { should eq "REGIONAL" }
-    its ('auto_create_subnetworks'){ should be false }
   end
 end
