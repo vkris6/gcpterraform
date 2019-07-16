@@ -25,7 +25,7 @@ gcp_location = "europe-west1-b"
 daily_maintenance_window_start_time = "03:00"
 node_pools = [
   {
-    name                       = "standard-pool"
+    name                       = "standard"
     initial_node_count         = 1
     autoscaling_min_node_count = 2
     autoscaling_max_node_count = 3
@@ -39,7 +39,7 @@ node_pools = [
 
   },
   {
-    name                       = "highmem-pool"
+    name                       = "highmem"
     initial_node_count         = 1
     autoscaling_min_node_count = 1
     autoscaling_max_node_count = 1
@@ -74,10 +74,10 @@ access_private_images = "false"
 
 http_load_balancing_disabled = "false"
 
+
 master_authorized_networks_cidr_blocks = [
   {
-    cidr_block = "0.0.0.0/0"
-
+    cidr_block = "90.221.77.132/32"
     display_name = "default"
-  },
+  },  
 ]

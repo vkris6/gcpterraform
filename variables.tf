@@ -178,6 +178,25 @@ by default; set disabled = true to disable.
 EOF
 }
 
+variable "enable_private_endpoint" {
+  type    = "string"
+  default = "true"
+
+  description = <<EOF
+Whether the master's internal IP address is used as the cluster endpoint. It is disabled 
+by default; set to false to disable.
+EOF
+}
+
+variable "enable_private_nodes" {
+  type    = "string"
+  default = "true"
+
+  description = <<EOF
+Whether nodes have internal IP addresses only. It is disabled 
+by default; set to false to disable.
+EOF
+}
 variable "master_authorized_networks_cidr_blocks" {
   type = "list"
 
@@ -186,7 +205,7 @@ variable "master_authorized_networks_cidr_blocks" {
     # be specified in CIDR notation. This block should allow access from any
     # address, but is given explicitly to prevernt Google's defaults from
     # fighting with Terraform.
-    cidr_block = "0.0.0.0/0"
+    cidr_block = "90.221.77.132/32"
 
     # Field for users to identify CIDR blocks.
     display_name = "default"
