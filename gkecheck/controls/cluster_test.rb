@@ -13,14 +13,11 @@ control 'gcp-1' do
     its('name') { should eq CLUSTER_NAME }
     its('status') { should eq 'RUNNING' }
     its('zone') { should match CLUSTER_ZONE }
-    its('master_auth.username') { should eq 'admin' }
     its('network') { should eq 'vpc-network' }
-    its('subnetwork') { should eq 'vpc-network' }
+    its('subnetwork') { should eq 'vpc-subnetwork' }
     its('initial_node_count') { should eq 1 }
     its('node_config.disk_size_gb'){should eq 100}
     its('node_config.image_type'){should eq "COS"}
-    its('node_config.machine_type'){should eq "n1-standard-1"}
-    its('node_ipv4_cidr_size'){should eq 24}
     its('node_pools.count'){should eq 2}
   end
 end
@@ -45,6 +42,6 @@ google_compute_networks(project: PROJECT_NAME).network_names.each do |network_na
     its ('subnetworks.count') { should be < 30 }
     its ('creation_timestamp_date') { should be > Time.now - 365*60*60*24*10 }
     its ('routing_config.routing_mode') { should eq "REGIONAL" }
-    its ('auto_create_subnetworks'){ should be true }
+    its ('auto_create_subnetworks'){ should be false }
   end
 end
