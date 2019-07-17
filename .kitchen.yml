@@ -1,20 +1,27 @@
 ---
-driver: 
+driver:
   name: terraform
-  root_module_directory: test/fixtures/tf_module
+  command_timeout: 1800
 
 provisioner:
   name: terraform
 
 verifier:
   name: terraform
-  groups: 
-    - name: default
-      controls:
-        - instance
+  color: true
+  fail_fast: true
 
 suites:
   - name: kt_suite
+    driver:
+      root_module_directory: test/fixtures/tf_module
+    verifier:
+      systems:
+        - name: inspec-gcp
+          backend: gcp
+          controls:
+            - instance
+
 
 platforms:
   - name: terraform

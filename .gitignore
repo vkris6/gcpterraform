@@ -5,3 +5,4 @@ vendor/
 .bundle/
 .kitchen/
 Gemfile.lock
+test/fixtures/tf_module/errored.tfstate
