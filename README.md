@@ -76,18 +76,10 @@ bundle install
 ```
 bundle exec kitchen list
 ```
-### Create
+### Now that kitchen-terraform is setup check that the configuration is valid, If the configuration is valid then apply it and also verify with:
 
 ```
 bundle exec kitchen test
-```
-
-### Converge
-
-Now that kitchen-terraform is setup check that the configuration is valid, If the configuration is valid then apply it with:
-
-```
-bundle exec kitchen converge
 ```
 
 ### Verify
