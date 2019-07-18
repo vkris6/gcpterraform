@@ -105,9 +105,6 @@ bundle exec kitchen test
 bundle exec kitchen verify
 ```
 
-Inspect the output of apply to ensure that what Terrform is going to do what you want, if so then enter `yes` at the prompt.
-The infrastructure will then be created, this make take a some time.
-
 ### Clean Up
 
 Remove the infrastructure created by Terraform with:
