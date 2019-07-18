@@ -1,4 +1,10 @@
-# gcpterraform
+# GKE terraform
+
+This module handles  Google Cloud Platform Kubernetes Engine cluster creation and configuration with Node Pools, IP MASQ, Network Policy, etc. The resources/services/activations/deletions that this module will create/trigger are:
+
+Create a GKE cluster with the provided addons
+Create GKE Node Pool(s) with provided configuration and attach to cluster
+Verify through kitchen-terraform
 
 ## Prerequisites
 
