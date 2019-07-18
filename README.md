@@ -16,10 +16,10 @@ Much of what these commands go can be achieved using the GCP Console, but using 
 
 The following guide assumes commands are run from the `example` directory.
 
-Provide the input variables with a `terraform.tfvars` file which can be created from the example file provided:
+Provide the input variables with a `terraform.tfvars` file provided:
 
 ```
-cp terraform.tfvars.example terraform.tfvars
+terraform.tfvars
 ```
 
 The values set in this file should be edited according to your environment and requirements.
@@ -64,18 +64,25 @@ Next, initialise Terraform with the name of the GCS Bucket just created:
 terraform init -backend-config=bucket=[BUCKET_NAME] -backend-config=project=[GOOGLE_PROJECT]
 ```
 
-### Applying
-
-Now that Terraform is setup check that the configuration is valid:
+### Install Kitchen-terraform
 
 ```
-terraform validate
+bundle install
 ```
 
-If the configuration is valid then apply it with:
+
+### List
 
 ```
-terraform apply
+bundle exec kitchen list
+```
+
+### Converge
+
+Now that kitchen-terraform is setup check that the configuration is valid, If the configuration is valid then apply it with:
+
+```
+bundle exec kitchen converge
 ```
 
 Inspect the output of apply to ensure that what Terrform is going to do what you want, if so then enter `yes` at the prompt.
@@ -86,7 +93,7 @@ The infrastructure will then be created, this make take a some time.
 Remove the infrastructure created by Terraform with:
 
 ```
-terraform destroy
+bundle exec kitchen destroy
 ```
 
 Sometimes Terraform may report a failure to destroy some resources due to dependencies and timing contention.
