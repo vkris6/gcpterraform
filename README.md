@@ -85,6 +85,12 @@ Now that kitchen-terraform is setup check that the configuration is valid, If th
 bundle exec kitchen converge
 ```
 
+### Verify
+
+```
+bundle exec kitchen verify
+```
+
 Inspect the output of apply to ensure that what Terrform is going to do what you want, if so then enter `yes` at the prompt.
 The infrastructure will then be created, this make take a some time.
 
