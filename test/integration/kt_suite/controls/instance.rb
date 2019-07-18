@@ -19,11 +19,11 @@ control 'instance' do
     its('node_config.image_type'){should eq "COS"}
     its('node_pools.count'){should eq 2}
     its('private_cluster_config.enable_private_nodes'){should eq true}
-    # its('master_authorized_networks_config.cidr_blocks'){should include '"cidrBlock":"90.221.77.132/32"'}
  
   end
 end
 
+control 'node_standard' do
 google_container_node_pools(project: PROJECT_NAME, zone: CLUSTER_ZONE, cluster_name: CLUSTER_NAME).node_pool_names.each do |node_pool_name_standard|
   describe google_container_node_pool(project: PROJECT_NAME, zone: CLUSTER_ZONE, cluster_name: CLUSTER_NAME, nodepool_name: node_pool_name_standard) do
     it { should exist }

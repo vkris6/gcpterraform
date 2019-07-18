@@ -21,7 +21,15 @@ suites:
           backend: gcp
           controls:
             - instance
-
+  - name: node_standard
+    driver:
+      root_module_directory: test/fixtures/tf_module
+    verifier:
+      systems:
+        - name: inspec-gcp
+          backend: gcp
+          controls:
+            - node_standard
 
 platforms:
   - name: terraform
