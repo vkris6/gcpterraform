@@ -1,4 +1,10 @@
-# gcpterraform
+# GKE terraform
+
+This module handles  Google Cloud Platform Kubernetes Engine cluster creation and configuration with Node Pools, IP MASQ, Network Policy, etc. The resources/services/activations/deletions that this module will create/trigger are:
+
+Create a GKE cluster with the provided addons
+Create GKE Node Pool(s) with provided configuration and attach to cluster
+Verify through kitchen-terraform
 
 ## Prerequisites
 
@@ -22,6 +28,17 @@ Provide the input variables with a `terraform.tfvars` file provided:
 terraform.tfvars
 ```
 
+Update the below to reflect your public ip, so that you can connect to master
+
+```
+
+master_authorized_networks_cidr_blocks = [
+  {
+    cidr_block = "90.221.77.132/32"
+    display_name = "default"
+  },  
+]
+```
 The values set in this file should be edited according to your environment and requirements.
 
 Once the Cloud SDK is installed you can authenticating, set the project, and choose a compute zone with the interactive command:
@@ -76,18 +93,10 @@ bundle install
 ```
 bundle exec kitchen list
 ```
-### Create
+### Now that kitchen-terraform is setup check that the configuration is valid, If the configuration is valid then apply it and also verify with:
 
 ```
 bundle exec kitchen test
-```
-
-### Converge
-
-Now that kitchen-terraform is setup check that the configuration is valid, If the configuration is valid then apply it with:
-
-```
-bundle exec kitchen converge
 ```
 
 ### Verify
@@ -95,9 +104,6 @@ bundle exec kitchen converge
 ```
 bundle exec kitchen verify
 ```
-
-Inspect the output of apply to ensure that what Terrform is going to do what you want, if so then enter `yes` at the prompt.
-The infrastructure will then be created, this make take a some time.
 
 ### Clean Up
 
