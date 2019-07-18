@@ -30,12 +30,15 @@ terraform.tfvars
 
 Update the below to reflect your public ip, so that you can connect to master
 
+```
+
 master_authorized_networks_cidr_blocks = [
   {
     cidr_block = "90.221.77.132/32"
     display_name = "default"
   },  
 ]
+```
 The values set in this file should be edited according to your environment and requirements.
 
 Once the Cloud SDK is installed you can authenticating, set the project, and choose a compute zone with the interactive command:
