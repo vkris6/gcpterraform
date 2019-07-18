@@ -19,6 +19,28 @@ control 'instance' do
     its('node_config.image_type'){should eq "COS"}
     its('node_pools.count'){should eq 2}
     its('private_cluster_config.enable_private_nodes'){should eq true}
- 
   end
+
+  google_container_node_pools(project: PROJECT_NAME, zone: CLUSTER_ZONE, cluster_name: CLUSTER_NAME).node_pool_names.each do |node_pool_name_standard|
+    describe google_container_node_pool(project: PROJECT_NAME, zone: CLUSTER_ZONE, cluster_name: CLUSTER_NAME, nodepool_name: node_pool_name_standard) do
+      it { should exist }
+      its('status') { should eq 'RUNNING' }
+    end
+  end
+
+  google_container_node_pools(project: PROJECT_NAME, zone: CLUSTER_ZONE, cluster_name: CLUSTER_NAME).node_pool_names.each do |node_pool_name_highmem|
+    describe google_container_node_pool(project: PROJECT_NAME, zone: CLUSTER_ZONE, cluster_name: CLUSTER_NAME, nodepool_name: node_pool_name_highmem) do
+      it { should exist }
+      its('status') { should eq 'RUNNING' }
+    end
+  end
+
+  google_compute_networks(project: PROJECT_NAME).network_names.each do |network_name|
+    describe google_compute_network(project: PROJECT_NAME,  name: network_name) do
+      its ('subnetworks.count') { should be < 30 }
+      its ('creation_timestamp_date') { should be > Time.now - 365*60*60*24*10 }
+      its ('routing_config.routing_mode') { should eq "REGIONAL" }
+    end
+  end
+
 end
