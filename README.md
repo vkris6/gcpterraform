@@ -76,6 +76,11 @@ bundle install
 ```
 bundle exec kitchen list
 ```
+### Create
+
+```
+bundle exec kitchen test
+```
 
 ### Converge
 
