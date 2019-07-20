@@ -22,7 +22,7 @@ Much of what these commands go can be achieved using the GCP Console, but using 
 
 The following guide assumes commands are run from the `example` directory.
 
-Provide the input variables with a `terraform.tfvars` file provided:
+Provide the input variables with a `terraform.tfvars` file provided under test/fixtures/tf_module:
 
 ```
 terraform.tfvars
