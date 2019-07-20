@@ -77,7 +77,7 @@ http_load_balancing_disabled = "false"
 
 master_authorized_networks_cidr_blocks = [
   {
-    cidr_block = "90.221.77.132/32"
+    cidr_block = "90.221.81.252/32"
     display_name = "default"
   },  
 ]
