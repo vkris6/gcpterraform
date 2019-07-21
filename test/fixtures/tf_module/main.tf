@@ -87,6 +87,32 @@ resource "google_compute_subnetwork" "vpc_subnetwork" {
   ]
 }
 
+# Create router for NAT
+resource "google_compute_router" "router" {
+  name    = "router"
+  region  = "europe-west1"
+  network = "${google_compute_network.vpc_network.name}"
+  bgp {
+    asn = 64514
+  }
+  depends_on = [
+    "google_compute_network.vpc_network",
+  ]
+}
+
+#Create NAT for external connectivity
+resource "google_compute_router_nat" "simple-nat" {
+  name                               = "nat-1"
+  router                             = "${google_compute_router.router.name}"
+  region                             = "europe-west1"
+  nat_ip_allocate_option             = "AUTO_ONLY"
+  source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
+  depends_on = [
+    "google_compute_router.router",
+  ]
+
+}
+
 module "cluster" {
   source  = "jetstack/gke-cluster/google"
   version = "0.1.0"
