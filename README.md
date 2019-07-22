@@ -72,7 +72,7 @@ Next create a GCS Bucket that will be used to hold Terraform state information.
 The Bucket name must be globally unique, a suggested name is `[PROJECT_ID]-terraform-state`:
 
 ```
-gsutil mb -l [REGION] gs://[BUCKET_NAME]
+gsutil mb gs://[BUCKET_NAME]
 ```
 
 Next, initialise Terraform with the name of the GCS Bucket just created:
